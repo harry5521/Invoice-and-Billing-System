@@ -11,6 +11,7 @@ class InvoiceItemSerializer(ModelSerializer):
     class Meta:
         model = InvoiceItem
         fields = ["id", "product", "product_name", "quantity", "line_total"]
+        read_only_fields = ["id", "product_name", "line_total"]
 
 
 class PaymentSerializer(ModelSerializer):
@@ -84,6 +85,11 @@ class InvoiceSerializer(ModelSerializer):
             "issue_date", "status",
             "sub_total", "tax", "discount", "total", "remaining_amount",
             "items", "created_at", "updated_at", "items_details", "payments_details"
+        ]
+        read_only_fields = [
+            "id", "invoice_number", "client_name",
+            "issue_date", "status", "sub_total", "total", "remaining_amount", 
+            "created_at", "updated_at"
         ]
 
     @transaction.atomic

@@ -29,14 +29,42 @@ class ClientViewSet(ModelViewSet):
     permission_classes = [IsManagerOrReadOnly]
 
 
-@extend_schema(tags=["Products"])
+@extend_schema(
+    tags=["Products"],
+    examples=[
+        OpenApiExample(
+            "Product Create Example",
+            value={
+                "name": "string",
+                "description": "string",
+                "unit_price": 500,
+            }
+        )
+    ]
+)
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [IsManagerOrReadOnly]
 
 
-@extend_schema(tags=["Invoices"])
+@extend_schema(
+    tags=["Invoices"],
+    examples=[
+        OpenApiExample(
+            "Invoice Create Example",
+            value={
+                "client": 1,
+                "tax": 5,
+                "discount": 10,
+                "items": [
+                    {"product": 2, "quantity": 10},
+                    {"product": 5, "quantity": 15}
+                ]
+            }
+        )
+    ]
+)
 class InvoiceViewSet(ModelViewSet):
     queryset = Invoice.objects.all()
     serializer_class = InvoiceSerializer
