@@ -1,4 +1,4 @@
-# Invoice & Payment Management API
+# Invoice & Billing Management API
 
 A backend-focused **Django REST Framework (DRF)** project that manages
 clients, products, invoices, and payments with role-based access
