@@ -52,8 +52,8 @@ class RegisterApiView(generics.CreateAPIView):
             description="Logout successful",
             examples=[
                 OpenApiExample(
-                    "Success Example",
-                    value={"message": "Logout successful."}
+                    "Logout Example",
+                    value={"message": "Logout successful.",}
                 )
             ],
         ),
@@ -79,7 +79,7 @@ class LogoutApiView(APIView):
         try:
             token = RefreshToken(refresh)
             token.blacklist()
-            return Response({"message": "Logout successful."}, status=status.HTTP_205_RESET_CONTENT)
+            return Response({"message": "Logout successful."}, status=status.HTTP_200_OK)
         except TokenError:
             return Response({"error": "Invalid or expired token."}, status=status.HTTP_400_BAD_REQUEST)
 
